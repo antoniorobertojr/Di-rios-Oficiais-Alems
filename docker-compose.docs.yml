@@ -1,0 +1,16 @@
+services:
+  docs:
+    image: diários_oficiais_alems_local_docs
+    container_name: diários_oficiais_alems_local_docs
+    build:
+      context: .
+      dockerfile: ./compose/local/docs/Dockerfile
+    env_file:
+      - ./.envs/.local/.django
+    volumes:
+      - ./docs:/docs:z
+      - ./config:/app/config:z
+      - ./diários_oficiais_alems:/app/diários_oficiais_alems:z
+    ports:
+      - '9000:9000'
+    command: /start-docs
